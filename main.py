@@ -1,11 +1,18 @@
 import pygame
-from helpers import screen
+from classes.Post import Post
 from constants import WINDOW_WIDTH, WINDOW_HEIGHT, BLACK
+from helpers import screen
 
+def create_post(username, location, description, likes_counter, comments):
+        post = Post(username, location, description, likes_counter, comments)
+        return post
+Posts = []
+Posts.append(create_post("shiffell", "Tel-Aviv", "Cool place",'96', [] ))
 
 def main():
     # Set up the game display, clock and headline
     pygame.init()
+    font = pygame.font.Font(None, 36)
 
     # Change the title of the window
     pygame.display.set_caption('Nitzagram')
@@ -17,12 +24,13 @@ def main():
     background = pygame.transform.scale(background,
                                         (WINDOW_WIDTH, WINDOW_HEIGHT))
 
-    # TODO: add a post here
 
+    # TODO: add a post here
     running = True
     while running:
         # Grabs events such as key pressed, mouse pressed and so.
         # Going through all the events that happened in the last clock tick
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -30,7 +38,7 @@ def main():
         # Display the background, presented Image, likes, comments, tags and location(on the Image)
         screen.fill(BLACK)
         screen.blit(background, (0, 0))
-
+        Posts[0].display()
         # Update display - without input update everything
         pygame.display.update()
 

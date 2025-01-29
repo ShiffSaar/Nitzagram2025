@@ -1,5 +1,4 @@
 import pygame
-
 from constants import *
 from helpers import screen
 
@@ -7,12 +6,31 @@ from helpers import screen
 class Post:
     """
     A class used to represent post on Nitzagram
+
     """
-    def __init__(self): #TODO: add parameters
-        #TODO: write me!
-        pass
+
+
+    def __init__(self, username, location, description, likes_counter, comments): #TODO: add parameters
+        self.username = username
+        self.location = location
+        self.description = description
+        self.like_counter = likes_counter
+        self.comments = comments
+
 
     def display(self):
+        font_UI = pygame.font.Font(None, UI_FONT_SIZE)
+
+        username_serf = font_UI.render(self.username, True, BLACK)
+        screen.blit(username_serf, (USER_NAME_X_POS,USER_NAME_Y_POS))
+        location_displ = font_UI.render(self.location, True, BLACK)
+        screen.blit(location_displ, (LOCATION_TEXT_X_POS, LOCATION_TEXT_Y_POS))
+
+        description_displ = font_UI.render(self.description, True, BLACK)
+        screen.blit(description_displ, (DESCRIPTION_TEXT_X_POS,DESCRIPTION_TEXT_Y_POS))
+
+        likes_displ = font_UI.render(self.like_counter, True, BLACK)
+        screen.blit(likes_displ, (LIKE_TEXT_X_POS, LIKE_TEXT_Y_POS))
         """
         Display the Post image/Text, description, location, likes and comments
         on screen
